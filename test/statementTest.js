@@ -81,8 +81,30 @@ test('should_return_true_info_when_statement_given_as-like_performances_with_20_
 
 });
 
-
-test('should_return_unknow_exception_when_statement_given_happiness_performances', t => {
+test('should_return_true_info_when_statement_given_as-like_performances_with_21_audience', t => {
+    //given
+    const invoice = {
+        'customer': 'BigCo',
+        'performances': [
+            {
+                'playID': 'as-like',
+                'audience': 21,
+            }],
+    };
+    const plays = {
+        'as-like': {
+            'name': 'As You Like It',
+            'type': 'comedy',
+        }
+    };
+    //when
+    const result = statement(invoice, plays);
+    const except = "Statement for BigCo\n" +
+        " As You Like It: $468.00 (21 seats)\n" +
+        "Amount owed is $468.00\n" +
+        "You earned 4 credits \n";
+    //then
+    t.is(result, except);
 });
 
 
