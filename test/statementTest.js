@@ -108,6 +108,33 @@ test('should_return_true_info_when_statement_given_as-like_performances_with_21_
 });
 
 
+test('should_return_unknow_exception_when_statement_given_happiness_performances', t => {
+    //given
+    const invoice = {
+        'customer': 'BigCo',
+        'performances': [
+            {
+                'playID': 'happiness',
+                'audience': 21,
+            }],
+    };
+    const plays = {
+        'as-like': {
+            'name': 'As You Like It',
+            'type': 'comedy',
+        }
+    };
+    //when
+    try {
+        const result = statement(invoice, plays);
+    } catch (e) {
+        //then
+        t.is(e.message, "Cannot read property \'type\' of undefined")
+    }
+});
+//
+
+
 const invoice = {
     'customer': 'BigCo',
     'performances': [
