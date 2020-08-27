@@ -1,5 +1,4 @@
 const COMEDY = 'comedy';
-const TRAGEDY = 'tragedy';
 getPlayFor = (plays, perf) => {
     return plays[perf.playID];
 };
