@@ -1,3 +1,7 @@
+getPlayFor = (plays, perf) => {
+    return plays[perf.playID];
+};
+
 function statement(invoice, plays) {
     let totalAmount = 0;
     let volumeCredits = 0;
@@ -8,7 +12,7 @@ function statement(invoice, plays) {
         minimumFractionDigits: 2,
     }).format;
     for (let perf of invoice.performances) {
-        const play = plays[perf.playID];
+        const play = getPlayFor(plays, perf);
         let thisAmount = countThisAmount(play.type, perf);
         // add volume credits
         volumeCredits += Math.max(perf.audience - 30, 0);
