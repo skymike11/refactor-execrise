@@ -44,10 +44,6 @@ getResultBodyDetail = (invoice, plays, format) => {
     return result;
 };
 
-getConnect = (detail, format, invoice, plays, volumeCredits) => {
-    return detail + `Amount owed is ${format(getTotalAmount(invoice.performances, plays) / 100)}\n` + `You earned ${volumeCredits} credits \n`;
-};
-
 buildTextResult = (plays, invoice, format) => {
     let volumeCredits = 0;
     let result = `Statement for ${invoice.customer}\n`;
