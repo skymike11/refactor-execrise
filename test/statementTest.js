@@ -1,22 +1,47 @@
 const test = require('ava');
 const {statement} = require('../src/statement');
-
-test('Sample test', t => {
-    t.true(true);
-    t.is(1, 1);
-    t.deepEqual({a: 1}, {a: 1});
+test('should_return_true_info_when_statement_given_hamlet_performances_with_30_audience', t => {
+    //given
+    const invoice = {
+        'customer': 'BigCo',
+        'performances': [
+            {
+                'playID': 'hamlet',
+                'audience': 30,
+            }
+        ],
+    };
+    const plays = {
+        'hamlet': {
+            'name': 'Hamlet',
+            'type': 'tragedy',
+        }
+    };
+    //when
+    const result = statement(invoice, plays);
+    const except = "Statement for BigCo\n" +
+        " Hamlet: $400.00 (30 seats)\n" +
+        "Amount owed is $400.00\n" +
+        "You earned 0 credits \n";
+    //then
+    t.is(result, except);
 });
 
-test('statement case 1. Customer BigCo has one performances hamlet and the audience is 30. ', t => {
-    //given
-    const invoice = {};
-    const plays = [];
+test('should_return_true_info_when_statement_given_hamlet_performances_with_31_audience', t => {
+});
 
-    const result = statement(invoice, plays);
-    // const result = '';
+test('should_return_true_info_when_statement_given_as-like_performances_with_20_audience', t => {
+});
+
+test('should_return_true_info_when_statement_given_as-like_performances_with_21_audience', t => {
+});
 
 
-    t.is(result, '');
+test('should_return_unknow_exception_when_statement_given_happiness_performances', t => {
+});
+
+
+test('should_return_unknow_exception_when_statement_given_happiness_performances', t => {
 });
 
 
